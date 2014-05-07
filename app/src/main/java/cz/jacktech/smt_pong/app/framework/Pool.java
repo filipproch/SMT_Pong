@@ -3,9 +3,6 @@ package cz.jacktech.smt_pong.app.framework;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by toor on 16.4.14.
- */
 public class Pool<T> {
     public interface PoolObjectFactory<T> {
         public T createObject();

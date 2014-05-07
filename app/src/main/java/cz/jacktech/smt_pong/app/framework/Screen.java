@@ -1,8 +1,5 @@
 package cz.jacktech.smt_pong.app.framework;
 
-/**
- * Created by toor on 16.4.14.
- */
 public abstract class Screen {
     protected final Game game;
 
@@ -19,6 +16,6 @@ public abstract class Screen {
     public abstract void resume();
 
     public abstract void dispose();
-
-    public abstract void backButton();
+    
+	public abstract void backButton();
 }

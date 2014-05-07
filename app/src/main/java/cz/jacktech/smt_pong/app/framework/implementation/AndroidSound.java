@@ -1,12 +1,9 @@
-package cz.jacktech.smt_pong.app;
+package cz.jacktech.smt_pong.app.framework.implementation;
 
 import android.media.SoundPool;
 
 import cz.jacktech.smt_pong.app.framework.Sound;
 
-/**
- * Created by toor on 16.4.14.
- */
 public class AndroidSound implements Sound {
     int soundId;
     SoundPool soundPool;

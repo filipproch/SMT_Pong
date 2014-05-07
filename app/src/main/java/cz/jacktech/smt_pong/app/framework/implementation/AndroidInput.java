@@ -1,8 +1,5 @@
-package cz.jacktech.smt_pong.app;
+package cz.jacktech.smt_pong.app.framework.implementation;
 
-/**
- * Created by toor on 16.4.14.
- */
 import java.util.List;
 
 import android.content.Context;
@@ -11,14 +8,14 @@ import android.view.View;
 
 import cz.jacktech.smt_pong.app.framework.Input;
 
-public class AndroidInput implements Input {
+public class AndroidInput implements Input {    
     TouchHandler touchHandler;
 
     public AndroidInput(Context context, View view, float scaleX, float scaleY) {
-        if(Integer.parseInt(VERSION.SDK) < 5)
+        if(Integer.parseInt(VERSION.SDK) < 5) 
             touchHandler = new SingleTouchHandler(view, scaleX, scaleY);
         else
-            touchHandler = new MultiTouchHandler(view, scaleX, scaleY);
+            touchHandler = new MultiTouchHandler(view, scaleX, scaleY);        
     }
 
 
@@ -43,5 +40,5 @@ public class AndroidInput implements Input {
     public List<TouchEvent> getTouchEvents() {
         return touchHandler.getTouchEvents();
     }
-
+    
 }

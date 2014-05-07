@@ -1,8 +1,5 @@
-package cz.jacktech.smt_pong.app;
+package cz.jacktech.smt_pong.app.framework.implementation;
 
-/**
- * Created by toor on 16.4.14.
- */
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -46,8 +43,8 @@ public class AndroidGraphics implements Graphics {
 
         Options options = new Options();
         options.inPreferredConfig = config;
-
-
+        
+        
         InputStream in = null;
         Bitmap bitmap = null;
         try {
@@ -97,34 +94,29 @@ public class AndroidGraphics implements Graphics {
         paint.setStyle(Style.FILL);
         canvas.drawRect(x, y, x + width - 1, y + height - 1, paint);
     }
-
-    @Override
-    public void drawCircle(int x, int y, int radius) {
-
-    }
-
+    
     @Override
     public void drawARGB(int a, int r, int g, int b) {
         paint.setStyle(Style.FILL);
-        canvas.drawARGB(a, r, g, b);
+       canvas.drawARGB(a, r, g, b);
     }
-
+    
     @Override
     public void drawString(String text, int x, int y, Paint paint){
-        canvas.drawText(text, x, y, paint);
+    	canvas.drawText(text, x, y, paint);
 
-
+    	
     }
-
+    
 
     public void drawImage(Image Image, int x, int y, int srcX, int srcY,
-                          int srcWidth, int srcHeight) {
+            int srcWidth, int srcHeight) {
         srcRect.left = srcX;
         srcRect.top = srcY;
         srcRect.right = srcX + srcWidth;
         srcRect.bottom = srcY + srcHeight;
-
-
+        
+        
         dstRect.left = x;
         dstRect.top = y;
         dstRect.right = x + srcWidth;
@@ -133,32 +125,32 @@ public class AndroidGraphics implements Graphics {
         canvas.drawBitmap(((AndroidImage) Image).bitmap, srcRect, dstRect,
                 null);
     }
-
+    
     @Override
     public void drawImage(Image Image, int x, int y) {
         canvas.drawBitmap(((AndroidImage)Image).bitmap, x, y, null);
     }
-
+    
     public void drawScaledImage(Image Image, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight){
-
-
-        srcRect.left = srcX;
+    	
+    	
+   	 srcRect.left = srcX;
         srcRect.top = srcY;
         srcRect.right = srcX + srcWidth;
         srcRect.bottom = srcY + srcHeight;
-
-
+        
+        
         dstRect.left = x;
         dstRect.top = y;
         dstRect.right = x + width;
         dstRect.bottom = y + height;
-
-
-
+        
+   
+        
         canvas.drawBitmap(((AndroidImage) Image).bitmap, srcRect, dstRect, null);
-
+        
     }
-
+   
     @Override
     public int getWidth() {
         return frameBuffer.getWidth();

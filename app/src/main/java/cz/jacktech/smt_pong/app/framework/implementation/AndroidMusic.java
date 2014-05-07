@@ -1,8 +1,5 @@
-package cz.jacktech.smt_pong.app;
+package cz.jacktech.smt_pong.app.framework.implementation;
 
-/**
- * Created by toor on 16.4.14.
- */
 import java.io.IOException;
 
 import android.content.res.AssetFileDescriptor;
@@ -11,6 +8,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
+
 import cz.jacktech.smt_pong.app.framework.Music;
 
 public class AndroidMusic implements Music, OnCompletionListener, OnSeekCompleteListener, OnPreparedListener, OnVideoSizeChangedListener {
@@ -29,7 +27,7 @@ public class AndroidMusic implements Music, OnCompletionListener, OnSeekComplete
             mediaPlayer.setOnSeekCompleteListener(this);
             mediaPlayer.setOnPreparedListener(this);
             mediaPlayer.setOnVideoSizeChangedListener(this);
-
+            
         } catch (Exception e) {
             throw new RuntimeException("Couldn't load music");
         }
@@ -37,10 +35,10 @@ public class AndroidMusic implements Music, OnCompletionListener, OnSeekComplete
 
     @Override
     public void dispose() {
-
-        if (this.mediaPlayer.isPlaying()){
-            this.mediaPlayer.stop();
-        }
+    
+    	 if (this.mediaPlayer.isPlaying()){
+    	       this.mediaPlayer.stop();
+    	        }
         this.mediaPlayer.release();
     }
 
@@ -65,8 +63,8 @@ public class AndroidMusic implements Music, OnCompletionListener, OnSeekComplete
             mediaPlayer.pause();
     }
 
-
-
+    
+    
     @Override
     public void play() {
         if (this.mediaPlayer.isPlaying())
@@ -97,12 +95,12 @@ public class AndroidMusic implements Music, OnCompletionListener, OnSeekComplete
 
     @Override
     public void stop() {
-        if (this.mediaPlayer.isPlaying() == true){
-            this.mediaPlayer.stop();
-
-            synchronized (this) {
-                isPrepared = false;
-            }}
+    	 if (this.mediaPlayer.isPlaying() == true){
+        this.mediaPlayer.stop();
+        
+       synchronized (this) {
+           isPrepared = false;
+        }}
     }
 
     @Override
@@ -112,31 +110,31 @@ public class AndroidMusic implements Music, OnCompletionListener, OnSeekComplete
         }
     }
 
-    @Override
-    public void seekBegin() {
-        mediaPlayer.seekTo(0);
+	@Override
+	public void seekBegin() {
+		mediaPlayer.seekTo(0);
+		
+	}
 
-    }
 
+	@Override
+	public void onPrepared(MediaPlayer player) {
+		// TODO Auto-generated method stub
+		 synchronized (this) {
+	           isPrepared = true;
+	        }
+		
+	}
 
-    @Override
-    public void onPrepared(MediaPlayer player) {
-        // TODO Auto-generated method stub
-        synchronized (this) {
-            isPrepared = true;
-        }
+	@Override
+	public void onSeekComplete(MediaPlayer player) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    }
-
-    @Override
-    public void onSeekComplete(MediaPlayer player) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onVideoSizeChanged(MediaPlayer player, int width, int height) {
-        // TODO Auto-generated method stub
-
-    }
+	@Override
+	public void onVideoSizeChanged(MediaPlayer player, int width, int height) {
+		// TODO Auto-generated method stub
+		
+	}
 }

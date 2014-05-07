@@ -1,13 +1,13 @@
-package cz.jacktech.smt_pong.app;
+package cz.jacktech.smt_pong.app.framework.implementation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.os.PowerManager;
-import android.support.v7.app.ActionBarActivity;
+import android.graphics.Bitmap.Config;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -18,16 +18,14 @@ import cz.jacktech.smt_pong.app.framework.Graphics;
 import cz.jacktech.smt_pong.app.framework.Input;
 import cz.jacktech.smt_pong.app.framework.Screen;
 
-
-public class MainActivity extends ActionBarActivity implements Game {
-
+public abstract class AndroidGame extends Activity implements Game {
     AndroidFastRenderView renderView;
     Graphics graphics;
     Audio audio;
     Input input;
     FileIO fileIO;
     Screen screen;
-    PowerManager.WakeLock wakeLock;
+    WakeLock wakeLock;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,8 @@ public class MainActivity extends ActionBarActivity implements Game {
         int frameBufferWidth = isPortrait ? 800: 1280;
         int frameBufferHeight = isPortrait ? 1280: 800;
         Bitmap frameBuffer = Bitmap.createBitmap(frameBufferWidth,
-                frameBufferHeight, Bitmap.Config.RGB_565);
-
+                frameBufferHeight, Config.RGB_565);
+        
         float scaleX = (float) frameBufferWidth
                 / getWindowManager().getDefaultDisplay().getWidth();
         float scaleY = (float) frameBufferHeight
@@ -55,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements Game {
         input = new AndroidInput(this, renderView, scaleX, scaleY);
         screen = getInitScreen();
         setContentView(renderView);
-
+        
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "MyGame");
     }
@@ -110,15 +108,9 @@ public class MainActivity extends ActionBarActivity implements Game {
         screen.update(0);
         this.screen = screen;
     }
-
+    
     public Screen getCurrentScreen() {
 
-        return screen;
+    	return screen;
     }
-
-    @Override
-    public Screen getInitScreen() {
-        return null;
-    }
-
 }

@@ -1,8 +1,5 @@
-package cz.jacktech.smt_pong.app;
+package cz.jacktech.smt_pong.app.framework.implementation;
 
-/**
- * Created by toor on 16.4.14.
- */
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -10,13 +7,13 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class AndroidFastRenderView extends SurfaceView implements Runnable {
-    MainActivity game;
+    AndroidGame game;
     Bitmap framebuffer;
     Thread renderThread = null;
     SurfaceHolder holder;
     volatile boolean running = false;
-
-    public AndroidFastRenderView(MainActivity game, Bitmap framebuffer) {
+    
+    public AndroidFastRenderView(AndroidGame game, Bitmap framebuffer) {
         super(game);
         this.game = game;
         this.framebuffer = framebuffer;
@@ -24,45 +21,45 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
 
     }
 
-    public void resume() {
+    public void resume() { 
         running = true;
         renderThread = new Thread(this);
-        renderThread.start();
+        renderThread.start();   
 
-    }
-
+    }      
+    
     public void run() {
         Rect dstRect = new Rect();
         long startTime = System.nanoTime();
-        while(running) {
+        while(running) {  
             if(!holder.getSurface().isValid())
-                continue;
-
+                continue;           
+            
 
             float deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
             startTime = System.nanoTime();
-
+            
             if (deltaTime > 3.15){
-                deltaTime = (float) 3.15;
-            }
-
+            	deltaTime = (float) 3.15;
+           }
+     
 
             game.getCurrentScreen().update(deltaTime);
             game.getCurrentScreen().paint(deltaTime);
-
-
-
+          
+            
+            
             Canvas canvas = holder.lockCanvas();
             canvas.getClipBounds(dstRect);
-            canvas.drawBitmap(framebuffer, null, dstRect, null);
+            canvas.drawBitmap(framebuffer, null, dstRect, null);                           
             holder.unlockCanvasAndPost(canvas);
-
-
+            
+            
         }
     }
 
-    public void pause() {
-        running = false;
+    public void pause() {                        
+        running = false;                        
         while(true) {
             try {
                 renderThread.join();
@@ -70,9 +67,9 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
             } catch (InterruptedException e) {
                 // retry
             }
-
+            
         }
-    }
-
-
+    }     
+    
+  
 }

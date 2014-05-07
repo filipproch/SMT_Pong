@@ -1,8 +1,5 @@
-package cz.jacktech.smt_pong.app;
+package cz.jacktech.smt_pong.app.framework.implementation;
 
-/**
- * Created by toor on 16.4.14.
- */
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,7 +16,7 @@ import android.preference.PreferenceManager;
 import cz.jacktech.smt_pong.app.framework.FileIO;
 
 public class AndroidFileIO implements FileIO {
-    Context context;
+	Context context;
     AssetManager assets;
     String externalStoragePath;
 
@@ -28,9 +25,9 @@ public class AndroidFileIO implements FileIO {
         this.assets = context.getAssets();
         this.externalStoragePath = Environment.getExternalStorageDirectory()
                 .getAbsolutePath() + File.separator;
-
-
-
+        
+ 
+    
     }
 
     @Override
@@ -47,8 +44,8 @@ public class AndroidFileIO implements FileIO {
     public OutputStream writeFile(String file) throws IOException {
         return new FileOutputStream(externalStoragePath + file);
     }
-
+    
     public SharedPreferences getSharedPref() {
-        return PreferenceManager.getDefaultSharedPreferences(context);
+    	return PreferenceManager.getDefaultSharedPreferences(context);
     }
 }

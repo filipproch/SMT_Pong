@@ -2,11 +2,8 @@ package cz.jacktech.smt_pong.app.framework;
 
 import java.util.List;
 
-/**
- * Created by toor on 16.4.14.
- */
 public interface Input {
-
+    
     public static class TouchEvent {
         public static final int TOUCH_DOWN = 0;
         public static final int TOUCH_UP = 1;
@@ -28,3 +25,4 @@ public interface Input {
 
     public List<TouchEvent> getTouchEvents();
 }
+ 

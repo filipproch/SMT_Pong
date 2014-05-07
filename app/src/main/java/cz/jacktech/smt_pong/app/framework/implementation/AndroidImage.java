@@ -1,8 +1,5 @@
-package cz.jacktech.smt_pong.app;
+package cz.jacktech.smt_pong.app.framework.implementation;
 
-/**
- * Created by toor on 16.4.14.
- */
 import android.graphics.Bitmap;
 
 import cz.jacktech.smt_pong.app.framework.Image;
@@ -11,7 +8,7 @@ import cz.jacktech.smt_pong.app.framework.Graphics.ImageFormat;
 public class AndroidImage implements Image {
     Bitmap bitmap;
     ImageFormat format;
-
+    
     public AndroidImage(Bitmap bitmap, ImageFormat format) {
         this.bitmap = bitmap;
         this.format = format;
@@ -35,5 +32,5 @@ public class AndroidImage implements Image {
     @Override
     public void dispose() {
         bitmap.recycle();
-    }
+    }      
 }
