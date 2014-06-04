@@ -20,9 +20,9 @@ public class Ball extends Reflector {
         this.x+=delta*addx;
         this.y+=delta*addy;}
     public void switchx(){
-        addx*=-1;}
+        addx=-addx;}
     public void switchy(){
-        addy*=-1;}
+        addy=-addy;}
 
     public void paint(float deltaTime, Graphics graphics) {
         graphics.drawRect(x,y,w,h, Color.WHITE);

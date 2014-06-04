@@ -29,14 +29,13 @@ public class GameScreen extends Screen {
 
     @Override
     public void update(float deltaTime) {
-        Log.v(TAG, ball.addx+", "+ball.hit(wall)+", "+ball.y+", "+ball.x+", "+wall.x);
         ball.update(deltaTime);
         player.update(deltaTime,game.getInput());
 
         if(ball.addx > 0 && ball.hit(wall))
             ball.switchx();
-        /*if(ball.addx < 0 && ball.hit(player))
-            ball.switchx();*/
+        if(ball.addx < 0 && ball.hit(player))
+            ball.switchx();
 
         if(ball.addx < 0 && ball.x <= 0){
             ball.reset(game.getGraphics().getWidth(),game.getGraphics().getHeight());

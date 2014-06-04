@@ -9,7 +9,7 @@ public class Reflector {
     public static String TAG = Reflector.class.getSimpleName();
     public int x,y,w,h;
     public boolean hit(Reflector reflector){
-        return !((reflector.x > x+w && x< reflector.x + reflector.w) && (reflector.y < y+h && y < reflector.y+reflector.h));
+        return (reflector.x < x+w && x< reflector.x + reflector.w && reflector.y < y+h && y < reflector.y+reflector.h);
     }
 
     @Override
