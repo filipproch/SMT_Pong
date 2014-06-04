@@ -1,6 +1,10 @@
 package cz.jacktech.smt_pong.app.screen;
 
+import android.graphics.Color;
+import android.graphics.Paint;
+
 import cz.jacktech.smt_pong.app.framework.Game;
+import cz.jacktech.smt_pong.app.framework.Graphics;
 import cz.jacktech.smt_pong.app.framework.Screen;
 
 /**
@@ -14,12 +18,16 @@ public class SplashScreen extends Screen{
 
     @Override
     public void update(float deltaTime) {
+        game.setScreen(new GameScreen(game));
 
     }
 
     @Override
     public void paint(float deltaTime) {
-
+        Graphics g=game.getGraphics();
+        Paint p=new Paint();
+        p.setColor(Color.WHITE);
+        g.drawString("pong",0,0,p);
     }
 
     @Override
