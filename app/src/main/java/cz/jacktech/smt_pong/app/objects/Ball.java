@@ -2,6 +2,8 @@ package cz.jacktech.smt_pong.app.objects;
 
 import android.graphics.Color;
 
+import java.util.Random;
+
 import cz.jacktech.smt_pong.app.framework.Graphics;
 
 /**
@@ -29,7 +31,8 @@ public class Ball extends Reflector {
     }
 
     public void reset(int w, int h) {
-        this.x=w/2-10;
-        this.y=h/2-10;
+        Random r = new Random();
+        this.x=w/2-r.nextInt(50)+25;
+        this.y=h/2-r.nextInt(100)+50;
     }
 }

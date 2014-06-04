@@ -41,7 +41,9 @@ public class GameScreen extends Screen {
 
         if(ball.addx < 0 && ball.x <= 0){
             ball.reset(game.getGraphics().getWidth(),game.getGraphics().getHeight());
-            player.die(game.getGraphics().getHeight());
+            if(!player.die(game.getGraphics().getHeight())){
+                game.setScreen(new MenuScreen(game));
+            }
         }
         if(ball.y <= 0 && ball.addy < 0)
             ball.switchy();
@@ -55,11 +57,13 @@ public class GameScreen extends Screen {
 
         Paint paint = new Paint();
         paint.setColor(Color.GREEN);
-        game.getGraphics().drawString(player.life+"", game.getGraphics().getWidth()/2, game.getGraphics().getHeight()/2,paint);
+        paint.setTextSize(80);
+        paint.setTextAlign(Paint.Align.CENTER);
+        game.getGraphics().drawString(player.life+" životů", game.getGraphics().getWidth()/2, game.getGraphics().getHeight()/2+40,paint);
 
         player.paint(deltaTime,game.getGraphics());
         wall.paint(deltaTime,game.getGraphics());
-        ball.paint(deltaTime,game.getGraphics());
+        ball.paint(deltaTime, game.getGraphics());
 
     }
 
