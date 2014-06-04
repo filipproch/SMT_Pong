@@ -1,5 +1,7 @@
 package cz.jacktech.smt_pong.app.screen;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
 
 import cz.jacktech.smt_pong.app.framework.Game;
@@ -50,6 +52,11 @@ public class GameScreen extends Screen {
     @Override
     public void paint(float deltaTime) {
         game.getGraphics().drawARGB(155, 0, 0, 0);
+
+        Paint paint = new Paint();
+        paint.setColor(Color.GREEN);
+        game.getGraphics().drawString(player.life+"", game.getGraphics().getWidth()/2, game.getGraphics().getHeight()/2,paint);
+
         player.paint(deltaTime,game.getGraphics());
         wall.paint(deltaTime,game.getGraphics());
         ball.paint(deltaTime,game.getGraphics());
