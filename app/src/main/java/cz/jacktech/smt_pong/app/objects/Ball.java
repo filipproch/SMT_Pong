@@ -8,8 +8,8 @@ import cz.jacktech.smt_pong.app.framework.Graphics;
  * Created by mhubata on 29.5.14.
  */
 public class Ball extends Reflector {
-    public int addx=1;
-    public int addy=1;
+    public int addx=2;
+    public int addy=2;
 
     public Ball(int w, int h){
         this.x=w/2-10;
